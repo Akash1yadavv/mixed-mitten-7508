@@ -1,13 +1,16 @@
 package com.StudentMngSys.Inter_Impl;
 
+import java.util.List;
 import com.StudentMngSys.Been.Course;
+import com.StudentMngSys.Been.Student;
 import com.StudentMngSys.Exception.AdminException;
 import com.StudentMngSys.Exception.BatchException;
 import com.StudentMngSys.Exception.CourseException;
+import com.StudentMngSys.Exception.StudentException;
 
 public interface AdminDao {
 	
-	public String adminLogIn(String userName, String password) throws AdminException;
+	public boolean adminLogIn(String userName, String password) throws AdminException;
 
 	public String insertNewCourse(Course course) throws CourseException;
 	
@@ -18,4 +21,11 @@ public interface AdminDao {
 	public Course searchInformationAboutCourse(int c_id) throws  CourseException;
 	
 	public String createBatchUnderCourse(int c_id, String batch) throws BatchException;
+	
+	public int  allocateBatchToStudent(int month, String c_name) throws BatchException, StudentException;
+	
+	public String updateTotalSeatsInBatch(String batch, int seats) throws BatchException;
+	
+	public List<Student> veiwStudentList()  throws StudentException;
+	//View the students of every batch
 }

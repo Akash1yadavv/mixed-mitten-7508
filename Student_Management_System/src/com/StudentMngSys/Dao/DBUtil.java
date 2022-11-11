@@ -22,9 +22,7 @@ public class DBUtil {
 			conn = DriverManager.getConnection(url,"root","Akash@890");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			e.printStackTrace();
 		}
-		
 		
 		return conn;
 	}
