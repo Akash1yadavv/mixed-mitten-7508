@@ -35,6 +35,7 @@ public class AdminDaoImpl implements AdminDao {
 				System.out.println("|                                |");
 				System.out.println("|       WELCOME BACK "+rs.getString("firstName").toUpperCase()+"        |");
 				System.out.println("|________________________________|");
+				System.out.println(" ");
 				return true;
 			}
 		} catch (SQLException e) {
@@ -60,7 +61,7 @@ public class AdminDaoImpl implements AdminDao {
 			ps.setInt(6, course.getTotalsets());
 			int x = ps.executeUpdate();
 			if(x>0)
-				message = course.getCourseName()+" course inserted in DataBase";
+				message = course.getCourseName()+" course added successfully..";
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -144,14 +145,15 @@ public class AdminDaoImpl implements AdminDao {
 //*****************************************************************Creating Batch****************************************************************
 
 	@Override
-	public String createBatchUnderCourse(int c_id, String batch) throws BatchException {
+	public String createBatchUnderCourse(int c_id, String batch, int totalSeats) throws BatchException {
 		String message  = "Batch creation failed please try again ";
 		
 		try(Connection conn = DBUtil.provideConnection()) {
-			PreparedStatement ps = conn.prepareStatement("insert into batch (courseId,batchName) values(?,?)");
+			PreparedStatement ps = conn.prepareStatement("insert into batch (courseId,batchName,totalSeats) values(?,?,?)");
 			
 			ps.setInt(1, c_id);
 			ps.setString(2, batch);
+			ps.setInt(2, totalSeats);
 			int x = ps.executeUpdate();
 			if(x>0)
 				message =batch+" Batch created successfully ";
@@ -164,36 +166,34 @@ public class AdminDaoImpl implements AdminDao {
 	}
 //**********************************************************Allocate Batch*****************************************************************************
 @Override
-public int allocateBatchToStudent(int month, String c_name) throws BatchException, StudentException {
+public int allocateBatchToStudent(String email, String c_name) throws BatchException, StudentException {
 	int totalStudents = 0;
 	
 	
 	try(Connection conn = DBUtil.provideConnection()) {
 		
-		PreparedStatement ps = conn.prepareStatement("select b.batchname, c.course_id,b.totalEnrolledStudent,b.totalSeats from course c, batch b, Student s where c.course_Id=b.courseId and c.Course_Id = s.CourseId and c.CourseName=? and month(s.JoiningDate)=? ");
+		PreparedStatement ps = conn.prepareStatement("select b.batchname, b.totalEnrolledStudent,b.totalSeats from course c, batch b, Student s where c.course_Id=b.courseId and c.Course_Id = s.CourseId and c.CourseName=?  ");
 		ps.setString(1, c_name);
-		ps.setInt(2, month);
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
 			
 			String batch= rs.getString("batchname");
 			
-			int c_id = rs.getInt("course_Id");
 			int totalEnrolledStudent = rs.getInt("totalEnrolledStudent");
 			int totalSeats = rs.getInt("totalSeats");
 			
-			PreparedStatement ps1 = conn.prepareStatement("Update student set batchName=? where month(joiningDate)=? and courseId=? and batchName =null");
+			PreparedStatement ps1 = conn.prepareStatement("Update student set batchName=? where Email =?");
 			ps1.setString(1, batch);
-			ps1.setInt(2, month);
-			ps1.setInt(3, c_id);
+			ps1.setString(2, email);
 			int x = ps1.executeUpdate();
-			
+			//totalStudents=x;
 			if(x>0) {
 				
 				PreparedStatement ps2;
-				if(totalEnrolledStudent <= totalSeats) {
-					ps2 = conn.prepareStatement("update batch set  totalEnrolledStudent = totalEnrolledStudent+?");
+				if(totalEnrolledStudent < totalSeats) {
+					ps2 = conn.prepareStatement("update batch set  totalEnrolledStudent = totalEnrolledStudent+? where batchName = ? ");
 					ps2.setInt(1, x);
+					ps2.setString(2, batch);
 					totalStudents=x;
 					int y = ps2.executeUpdate();
 				}else {
@@ -205,6 +205,7 @@ public int allocateBatchToStudent(int month, String c_name) throws BatchExceptio
 
 	} catch (SQLException e) {
 		System.out.println(e.getMessage());
+		return 2;
 	}
 	return totalStudents;
 }

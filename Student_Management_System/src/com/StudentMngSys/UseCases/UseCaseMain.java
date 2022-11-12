@@ -56,23 +56,93 @@ public class UseCaseMain {
 				}
 				break;
 			case 2:
-				System.out.println("Enter your user name");
-				username = sc.next();
-				System.out.println("Enter your password");
-				password = sc.next();
+				System.out.println("Enter '1' : for Login..");
+				System.out.println("Enter '2' : for new Registration");
+				System.out.println("Enter '0' : Exit now");
+				int num3 =sc.nextInt();
 				try {
-					boolean ch = dao2.loginStudent(username, password);
-					if(ch==true) {
-						studentWork(username);
-					}else {
-						System.out.println("log in faild.. invalid user name or password");
-						System.out.println("*************************************************");
+					switch(num3) {
+					case 1:  ///====== ==========================================================student can log in here.................
+						System.out.println("Enter your user name");
+						username = sc.next();
+						System.out.println("Enter your password");
+						password = sc.next();
+						try {
+							boolean ch = dao2.loginStudent(username, password);
+							if(ch==true) {
+								studentWork(username);
+							}else {
+								System.out.println("log in faild.. invalid user name or password");
+								System.out.println("*************************************************");
+								startRun();
+							}
+						} catch (StudentException e) {
+							System.out.println("Oops.. Invalid input.");
+							startRun();
+						}
+						break;
+					case 2:   //======================================================================Student can register here.........
+						System.out.println("Here you can register...");
+						try {
+							System.out.println("Enetr your first name.. ");
+							String fname =sc.next();
+							System.out.println("Enetr your last name...");
+							String lname = sc.next();
+							System.out.println("Enetr email address...");
+							String email = sc.next();
+							System.out.println("Enetr passwors...");
+							 password = sc.next();
+							System.out.println("Enetr  your mobile number...");
+							long mobile = sc.nextLong();
+							System.out.println("Enetr your current address....");
+							String address = sc.next();
+							System.out.println("Enetr course name, in which you want to register...");
+							String cname = sc.next();
+							
+							Student std = new Student(fname, lname, email, password, mobile, address, cname);
+							boolean check;
+							try {
+								check = dao2.registraterStudent(std);
+								if(check==true) {
+									System.out.println("Your registration done successfully");
+									
+								}else {
+									System.out.println("Oops.. Registration failed..");
+									System.out.println("Please try again");
+									
+								}								
+							} catch (StudentException e) {
+								System.out.println(e.getMessage());
+								System.out.println("Please try again..");
+								startRun();
+							}
+
+							
+						} catch (InputMismatchException e) {
+							System.out.println("Oops.. Invalid input.");
+							startRun();
+						}
+						System.out.println("**************************************************************");
+						startRun();
+						break;
+					case 0:
+						System.out.println("|************************|");
+						System.out.println("|     --THANK YOU--      |");
+						System.out.println("**************************");
 						startRun();
 					}
-				} catch (StudentException e) {
-					System.out.println(e.getMessage());
+				} catch (InputMismatchException e) {
+					System.out.println("Oops.. Invalid input.");
 					startRun();
 				}
+				
+			case 0:
+				System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+				System.out.println("|                                                     |");
+				System.out.println("|            --Thank You for Visit--                  |");
+				System.out.println("|                                                     |");
+				System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+				sc.close();
 
 			}
 		} catch (InputMismatchException e) {
@@ -90,7 +160,7 @@ public class UseCaseMain {
 		System.out.println("Enter '2': Update your email id");
 		System.out.println("Enter '3': Update your Mobile number");
 		System.out.println("Enter '4': update your address");
-		System.out.println("Enter '5': can see all the available course list and their seat availability");
+		System.out.println("Enter '5': View all available course list and their seat availability");
 		System.out.println("Enter '0': 'Log out'");
 		int num2 = sc.nextInt();
 		useCaseStudent(num2,dao2,sc,username);
@@ -183,6 +253,26 @@ public class UseCaseMain {
 			studentWork(username);
 			break;
 		case 5:
+			try {
+				List<Course> list= dao2.viewAllCourseList();
+				if(list.size()>0) {
+					System.out.println("Course list..");
+					list.forEach(s->System.out.println(s));
+				}else {
+					System.out.println("sorry.. there are no Available course");
+				}
+			} catch (CourseException e) {
+				System.out.println(e.getMessage());
+				studentWork(username);
+			}
+			System.out.println("*********************************************************************");
+			studentWork(username);
+			break;
+		case 0:
+			System.out.println("|************************|");
+			System.out.println("|     --THANK YOU--      |");
+			System.out.println("**************************");
+			startRun();
 		}
 		
 	}
@@ -224,8 +314,9 @@ public class UseCaseMain {
 				String c_name = sc.next();
 				System.out.println("Enter course fee ");
 				int c_fee = sc.nextInt();
+				sc.nextLine();
 				System.out.println("Enter course duration ");
-				String duration = sc.next();
+				String duration = sc.nextLine();
 				System.out.println("Enter course Total seats ");
 				int t_seats = sc.nextInt();
 				Course  crs =  new Course(c_id, c_name, c_fee, duration, t_seats);	
@@ -302,8 +393,10 @@ public class UseCaseMain {
 				int c_id = sc.nextInt();
 				System.out.println("Enter Batch name");
 				String batch = sc.next();
+				System.out.println("Enter Number of seats limit in Batch ");
+				int seats = sc.nextInt();
 				try {
-					System.out.println(dao1.createBatchUnderCourse(c_id, batch));
+					System.out.println(dao1.createBatchUnderCourse(c_id, batch, seats));
 					
 				} catch (BatchException e) {
 					System.out.println(e.getMessage());
@@ -315,20 +408,22 @@ public class UseCaseMain {
 			adminWork();
 			break;
 		case 6:
-			System.out.println("You have selected:  Allocate students in a Batch under a course'");
-			System.out.println("here you can allocate batch accoding to student joining month and his course");
+			
+			System.out.println("here you can allocate batch accoding to student user name and his course");
 		
 			try {
 				System.out.println("Enter Course Name ");
 			    String c_name = sc.next();
-			    System.out.println("Enter current month (in digit) ");
-				int month = sc.nextInt();
+			    System.out.println("Enter Student email ");
+				String userName = sc.next();
 				try {
-					int x = dao1.allocateBatchToStudent(month, c_name);
+					int x = dao1.allocateBatchToStudent(userName, c_name);
 					if(x>0)
-						System.out.println(x+" students have batch allocated");
+						System.out.println(x+" student batch allocated successfully..");
 					else if(x==0)
-						System.out.println(" invalid user name or password");
+						System.out.println("Oops.. Inccorect course name or user name");
+					else if(x==2)
+						System.out.println(" Oops.. Inccorect input");
 					
 				} catch (BatchException | StudentException e) {
 					System.out.println(e.getMessage());
