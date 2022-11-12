@@ -20,9 +20,9 @@ public interface AdminDao {
 	
 	public Course searchInformationAboutCourse(int c_id) throws  CourseException;
 	
-	public String createBatchUnderCourse(int c_id, String batch) throws BatchException;
+	public String createBatchUnderCourse(int c_id, String batch,int totalSeats) throws BatchException;
 	
-	public int  allocateBatchToStudent(int month, String c_name) throws BatchException, StudentException;
+	public int  allocateBatchToStudent(String email ,String c_name) throws BatchException, StudentException;
 	
 	public String updateTotalSeatsInBatch(String batch, int seats) throws BatchException;
 	

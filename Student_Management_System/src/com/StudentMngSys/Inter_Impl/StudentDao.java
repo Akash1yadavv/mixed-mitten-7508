@@ -1,5 +1,10 @@
 package com.StudentMngSys.Inter_Impl;
 
+import java.util.List;
+
+import com.StudentMngSys.Been.Course;
+import com.StudentMngSys.Been.Student;
+import com.StudentMngSys.Exception.CourseException;
 import com.StudentMngSys.Exception.StudentException;
 
 public interface StudentDao {
@@ -12,5 +17,9 @@ public interface StudentDao {
 	public boolean updateMobile(String username, long newMobile) throws StudentException;
 	
 	public boolean updateAddress(String username, String add) throws StudentException;
+	
+	public List<Course> viewAllCourseList() throws CourseException;
+	
+	public boolean registraterStudent(Student std) throws StudentException;
 	
 }

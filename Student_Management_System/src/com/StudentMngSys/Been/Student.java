@@ -12,6 +12,7 @@ public class Student {
 	 private String Batch;
 	 private int CourseId;
 	 private String joiningDate;
+	 private String courseName;
 	 
 	public Student(int roll, String firstName, String lastName, String userName, String password, long mobile,
 			String address, String batch, int courseId, String joiningDate) {
@@ -29,6 +30,23 @@ public class Student {
 	}
 
 
+	
+	
+	public Student(String firstName, String lastName, String userName, String password, long mobile, String address,
+			String courseName) {
+		super();
+		FirstName = firstName;
+		LastName = lastName;
+		UserName = userName;
+		Password = password;
+		Mobile = mobile;
+		Address = address;
+		this.courseName = courseName;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "Student [roll=" + roll + ", FirstName=" + FirstName + ", LastName=" + LastName + ", UserName="
@@ -37,9 +55,13 @@ public class Student {
 	}
 
 
+
+
 	public int getRoll() {
 		return roll;
 	}
+
+
 
 
 	public void setRoll(int roll) {
@@ -47,9 +69,13 @@ public class Student {
 	}
 
 
+
+
 	public String getFirstName() {
 		return FirstName;
 	}
+
+
 
 
 	public void setFirstName(String firstName) {
@@ -57,9 +83,13 @@ public class Student {
 	}
 
 
+
+
 	public String getLastName() {
 		return LastName;
 	}
+
+
 
 
 	public void setLastName(String lastName) {
@@ -67,9 +97,13 @@ public class Student {
 	}
 
 
+
+
 	public String getUserName() {
 		return UserName;
 	}
+
+
 
 
 	public void setUserName(String userName) {
@@ -77,9 +111,13 @@ public class Student {
 	}
 
 
+
+
 	public String getPassword() {
 		return Password;
 	}
+
+
 
 
 	public void setPassword(String password) {
@@ -87,9 +125,13 @@ public class Student {
 	}
 
 
+
+
 	public long getMobile() {
 		return Mobile;
 	}
+
+
 
 
 	public void setMobile(long mobile) {
@@ -97,9 +139,13 @@ public class Student {
 	}
 
 
+
+
 	public String getAddress() {
 		return Address;
 	}
+
+
 
 
 	public void setAddress(String address) {
@@ -107,9 +153,13 @@ public class Student {
 	}
 
 
+
+
 	public String getBatch() {
 		return Batch;
 	}
+
+
 
 
 	public void setBatch(String batch) {
@@ -117,9 +167,13 @@ public class Student {
 	}
 
 
+
+
 	public int getCourseId() {
 		return CourseId;
 	}
+
+
 
 
 	public void setCourseId(int courseId) {
@@ -127,14 +181,34 @@ public class Student {
 	}
 
 
+
+
 	public String getJoiningDate() {
 		return joiningDate;
 	}
 
 
+
+
 	public void setJoiningDate(String joiningDate) {
 		this.joiningDate = joiningDate;
 	}
+
+
+
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+
+
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+
 	 
 	 
 
