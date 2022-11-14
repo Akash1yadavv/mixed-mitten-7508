@@ -130,7 +130,7 @@ public class AdminDaoImpl implements AdminDao {
 				int fee  = rs.getInt("courseFee");
 				String duration= rs.getString("duration");
 				int totalsets = rs.getInt("TotalSeats");
-				int avlblSeats = rs.getInt(" AvailableSeats");
+				int avlblSeats = rs.getInt("AvailableSeats");
 				Course crs = new Course(courseId, courseName, fee, duration,totalsets, avlblSeats);
 				System.out.println("bellow you can see all information about this course...");
 				course =crs;
@@ -139,6 +139,7 @@ public class AdminDaoImpl implements AdminDao {
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			throw new CourseException("Invalid course Details try again");
 		}
 		return course;
 	}
@@ -153,7 +154,7 @@ public class AdminDaoImpl implements AdminDao {
 			
 			ps.setInt(1, c_id);
 			ps.setString(2, batch);
-			ps.setInt(2, totalSeats);
+			ps.setInt(3, totalSeats);
 			int x = ps.executeUpdate();
 			if(x>0)
 				message =batch+" Batch created successfully ";
@@ -165,47 +166,60 @@ public class AdminDaoImpl implements AdminDao {
 		return message;
 	}
 //**********************************************************Allocate Batch*****************************************************************************
+
+	
 @Override
-public int allocateBatchToStudent(String email, String c_name) throws BatchException, StudentException {
+
+public int allocateBatchToStudent(String email,String batchname) throws BatchException, StudentException {
 	int totalStudents = 0;
 	
 	
 	try(Connection conn = DBUtil.provideConnection()) {
 		
-		PreparedStatement ps = conn.prepareStatement("select b.batchname, b.totalEnrolledStudent,b.totalSeats from course c, batch b, Student s where c.course_Id=b.courseId and c.Course_Id = s.CourseId and c.CourseName=?  ");
-		ps.setString(1, c_name);
+//		PreparedStatement ps = conn.prepareStatement("select b.batchname, b.totalEnrolledStudent,b.totalSeats from course c,"
+//												+ " batch b, Student s where c.course_Id=b.courseId and c.Course_Id = s.CourseId and c.CourseName=?  ");
+		
+		
+		PreparedStatement ps = conn.prepareStatement("select c.course_Id, b.totalEnrolledStudent,b.totalSeats from course c,"
+				+ " batch b, Student s where c.course_Id=b.courseId and c.Course_Id = s.CourseId and b.batchName=?  ");
+		
+		ps.setString(1, batchname);
+		
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
 			
-			String batch= rs.getString("batchname");
-			
+			int c_Id = rs.getInt("Course_Id");
 			int totalEnrolledStudent = rs.getInt("totalEnrolledStudent");
 			int totalSeats = rs.getInt("totalSeats");
-			
-			PreparedStatement ps1 = conn.prepareStatement("Update student set batchName=? where Email =?");
-			ps1.setString(1, batch);
-			ps1.setString(2, email);
-			int x = ps1.executeUpdate();
-			//totalStudents=x;
-			if(x>0) {
+
 				
-				PreparedStatement ps2;
-				if(totalEnrolledStudent < totalSeats) {
+			PreparedStatement ps2;
+			if(totalEnrolledStudent < totalSeats) {
+				PreparedStatement ps1 = conn.prepareStatement("Update student set batchName=? where Email =? and batchname is null");
+				ps1.setString(1, batchname);
+				ps1.setString(2, email);
+				int x = ps1.executeUpdate();
+				if(x>0) {
 					ps2 = conn.prepareStatement("update batch set  totalEnrolledStudent = totalEnrolledStudent+? where batchName = ? ");
 					ps2.setInt(1, x);
-					ps2.setString(2, batch);
-					totalStudents=x;
+					ps2.setString(2, batchname);
+					totalStudents=5;
 					int y = ps2.executeUpdate();
+					
+					
 				}else {
-					System.out.println("batch seats full you can not allocate to any student ");	
+					System.out.println("Invalid user name OR student already assigned in any batch");
 					return -1;
 				}
+			}else {
+				System.out.println("batch seats full you can not allocate to any student ");	
+				return -1;
 			}			
 		}
 
 	} catch (SQLException e) {
-		System.out.println(e.getMessage());
-		return 2;
+		throw new BatchException("Invalid user name or course name !");
+		//return 2;
 	}
 	return totalStudents;
 }

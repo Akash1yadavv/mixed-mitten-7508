@@ -22,7 +22,7 @@ public interface AdminDao {
 	
 	public String createBatchUnderCourse(int c_id, String batch,int totalSeats) throws BatchException;
 	
-	public int  allocateBatchToStudent(String email ,String c_name) throws BatchException, StudentException;
+	public int  allocateBatchToStudent(String email ,String batchname) throws BatchException, StudentException;
 	
 	public String updateTotalSeatsInBatch(String batch, int seats) throws BatchException;
 	
