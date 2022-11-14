@@ -18,6 +18,9 @@ import com.StudentMngSys.Inter_Impl.StudentDaoImpl;
 public class UseCaseMain {
 
 	public static void main(String[] args) {
+		System.out.println("WELCOME TO STUDENT REGISTRATION PORTAL  ");
+		System.out.println("-----------------------------------------");
+		System.out.println(" ");
 		startRun();
 
 	}
@@ -376,7 +379,13 @@ public class UseCaseMain {
 				System.out.println("Enetr Course id ");
 				int c_id = sc.nextInt();
 				 try {
-					System.out.println(dao1.searchInformationAboutCourse(c_id));
+					 Course crs = dao1.searchInformationAboutCourse(c_id);
+					 if(crs!=null) {
+						 System.out.println(crs);
+					 }else {
+						 
+					 }
+					System.out.println();
 				} catch (CourseException e) {
 					System.out.println(e.getMessage());
 				}	
@@ -392,7 +401,8 @@ public class UseCaseMain {
 				System.out.println("Enter course id ");
 				int c_id = sc.nextInt();
 				System.out.println("Enter Batch name");
-				String batch = sc.next();
+				sc.nextLine();
+				String batch = sc.nextLine();
 				System.out.println("Enter Number of seats limit in Batch ");
 				int seats = sc.nextInt();
 				try {
@@ -409,19 +419,20 @@ public class UseCaseMain {
 			break;
 		case 6:
 			
-			System.out.println("here you can allocate batch accoding to student user name and his course");
+			System.out.println("here you can allocate batch accroding to student user name ");
 		
 			try {
-				System.out.println("Enter Course Name ");
-			    String c_name = sc.next();
+				System.out.println("Enter Batch Name ");
+				sc.nextLine();
+			    String batchname = sc.nextLine();
 			    System.out.println("Enter Student email ");
 				String userName = sc.next();
 				try {
-					int x = dao1.allocateBatchToStudent(userName, c_name);
+					int x = dao1.allocateBatchToStudent(userName,  batchname);
 					if(x>0)
-						System.out.println(x+" student batch allocated successfully..");
+						System.out.println(" student batch allocated successfully..");
 					else if(x==0)
-						System.out.println("Oops.. Inccorect course name or user name");
+						System.out.println("Oops.. Inccorect  user name or Batch name");
 					else if(x==2)
 						System.out.println(" Oops.. Inccorect input");
 					
@@ -439,7 +450,8 @@ public class UseCaseMain {
 			System.out.println("You have selected: Update total seats of a batch");
 			try {
 				System.out.println("Enetr batch name");
-				String batch = sc.next();
+				sc.nextLine();
+				String batch = sc.nextLine();
 				System.out.println("Enetr total seats");
 				int seats = sc.nextInt();
 				try {
