@@ -227,7 +227,7 @@ public int allocateBatchToStudent(String email,String batchname) throws BatchExc
 
 @Override
 public String updateTotalSeatsInBatch(String batch, int seats) throws BatchException {
-	String message = "Seat updation failed";
+	
 	
 	try (Connection conn = DBUtil.provideConnection()){
 		PreparedStatement ps = conn.prepareStatement("update batch set totalSeats=? where batchName = ?");
@@ -235,12 +235,12 @@ public String updateTotalSeatsInBatch(String batch, int seats) throws BatchExcep
 		ps.setString(2, batch);
 		int x =ps.executeUpdate();
 		if(x>0) {
-			message = "Seats updated successfully";
+			return "Seats updated successfully";
 		}
 	} catch (SQLException e) {
-		message = e.getMessage();
+		return e.getMessage();
 	}
-	return message;
+	return "Seat Updation failed..";
 }
 //*********************************************************************View Students List**************************************************
 
