@@ -1,6 +1,6 @@
 # mixed-mitten-7508
 Automated Student Registration System..
-# -regular-teeth-9707
+
    This is the backend of an online Hardware and Software Application. The user flow is implemented for 3 entities,  HOD Engineer and Employee. Employee can login registered the complain .HOD can registered the Engineer and assign to problem  to the engineer and Engineer can the solved the complain and Update the complain Status
 
 
@@ -19,10 +19,6 @@ Automated Student Registration System..
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png" width="100%">
 
-## REST API for an Online Cab Booking System
-
-- We have developed this REST API for an Online Cab Booking System. This API performs all the fundamental CRUD operations of any Trip Management Application platform with user validation at every step.
-- This project is developed by team of 4 Back-End Developers during project week in Masai School.
 
 ## Tech Stack
 
@@ -33,9 +29,9 @@ Automated Student Registration System..
 ## Modules
 
 - Login, Logout Module
-- HOD Module
-- Engineer Module
-- Employee Module
+- Admin Module
+- Course Module
+- Student Module
 
 
 ## Features
@@ -61,11 +57,11 @@ Automated Student Registration System..
 ## Project Logo
 
 <!-- <a href="https://drive.google.com/file/d/1redTBHp9SlBXjTRZ464B-JDW7JYNphBT/view">**Video Drive Link** </a> -->
-<img src="image/StudentRegestrationSystem.jpg"> 
+<img src="image/StudentRegestrationSystem.jpg" alt="Logo"> 
 
 ## Database Schema 
 
-<img src="image/project_database.jpg" alt="Akash"> 
+<img src="image/Student_Registration_Portal_Database_Digram_page-00012.jpg" alt="Database"> 
 <!-- <a href="https://docs.google.com/presentation/d/1RYZl2LMi145-N6QlpuCRUKROo7vEhpJO/edit?usp=sharing&ouid=115573521711169005136&rtpof=true&sd=true">**PPT Link** </a> -->
 
 
@@ -73,16 +69,16 @@ Automated Student Registration System..
 
 ---
 
-<img src="image/FlowChart SB101.jpg"> 
+<img src="image/Stusent_registration_system_flow_chart.png" alt="E-R Digram"> 
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png" width="100%">
 
 ## Contributors
-👤 **Atul Singh Bhadouria**
+👤 **Akash Yadav**
 
-- GitHub: [@atulsinghmbbs](https://github.com/atulsinghmbbs)
+- GitHub: [@Akash1yadavv](https://github.com/Akash1yadavv)
 
-- LinkedIn: [@Atul Singh Bhadouria](https://www.linkedin.com/in/atul-singh-bhadouria-5a1a88108/)
+- LinkedIn: [@Akash Yadav](https://www.linkedin.com/in/akash-yadav-83372923a/)
 
 
 
