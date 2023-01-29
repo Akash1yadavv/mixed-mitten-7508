@@ -65,7 +65,7 @@ Automated Student Registration System..
 
 ## Database Schema 
 
-<img src="image/project_database.jpg"> 
+<img src="image/project_database.jpg" alt="Akash"> 
 <!-- <a href="https://docs.google.com/presentation/d/1RYZl2LMi145-N6QlpuCRUKROo7vEhpJO/edit?usp=sharing&ouid=115573521711169005136&rtpof=true&sd=true">**PPT Link** </a> -->
 
 
