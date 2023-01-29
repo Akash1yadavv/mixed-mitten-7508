@@ -33,9 +33,9 @@ Automated Student Registration System..
 ## Modules
 
 - Login, Logout Module
-- HOD Module
-- Engineer Module
-- Employee Module
+- Admin Module
+- Course Module
+- Student Module
 
 
 ## Features
@@ -61,11 +61,11 @@ Automated Student Registration System..
 ## Project Logo
 
 <!-- <a href="https://drive.google.com/file/d/1redTBHp9SlBXjTRZ464B-JDW7JYNphBT/view">**Video Drive Link** </a> -->
-<img src="image/StudentRegestrationSystem.jpg"> 
+<img src="image/StudentRegestrationSystem.jpg" alt="Logo"> 
 
 ## Database Schema 
 
-<img src="image/project_database.jpg" alt="Akash"> 
+<img src="image/project_database.jpg" alt="Database"> 
 <!-- <a href="https://docs.google.com/presentation/d/1RYZl2LMi145-N6QlpuCRUKROo7vEhpJO/edit?usp=sharing&ouid=115573521711169005136&rtpof=true&sd=true">**PPT Link** </a> -->
 
 
@@ -73,16 +73,16 @@ Automated Student Registration System..
 
 ---
 
-<img src="image/FlowChart SB101.jpg"> 
+<img src="image/FlowChart SB101.jpg" alt="E-R Digram"> 
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png" width="100%">
 
 ## Contributors
-👤 **Atul Singh Bhadouria**
+👤 **Akash Yadav**
 
-- GitHub: [@atulsinghmbbs](https://github.com/atulsinghmbbs)
+- GitHub: [@atulsinghmbbs](https://github.com/Akash1yadavv)
 
-- LinkedIn: [@Atul Singh Bhadouria](https://www.linkedin.com/in/atul-singh-bhadouria-5a1a88108/)
+- LinkedIn: [@Akash Yadav](https://www.linkedin.com/in/akash-yadav-83372923a/)
 
 
 
