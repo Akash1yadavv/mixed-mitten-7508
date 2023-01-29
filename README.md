@@ -17,6 +17,9 @@ Automated Student Registration System..
 
 <!-- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.icegif.com%2Fteamwork-20%2F&psig=AOvVaw1V55uwZ46Z_ygkKyE9zEW5&ust=1668094635069000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCKiExP62ofsCFQAAAAAdAAAAABAX -->
 
+## About
+   This is the backend of an online Hardware and Software Application. The user flow is implemented for 3 entities,  HOD Engineer and Employee. Employee can login registered the complain .HOD can registered the Engineer and assign to problem  to the engineer and Engineer can the solved the complain and Update the complain Status
+
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png" width="100%">
 
 
