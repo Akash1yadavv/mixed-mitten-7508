@@ -1,9 +1,6 @@
 # mixed-mitten-7508
 Automated Student Registration System..
 
-   This is the backend of an online Hardware and Software Application. The user flow is implemented for 3 entities,  HOD Engineer and Employee. Employee can login registered the complain .HOD can registered the Engineer and assign to problem  to the engineer and Engineer can the solved the complain and Update the complain Status
-
-
 
 <img src="https://www.hrtechx.com/wp-content/uploads/2020/10/team-work.gif" width="100%">
 
