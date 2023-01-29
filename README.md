@@ -69,7 +69,7 @@ Automated Student Registration System..
 
 ---
 
-<img src="image/Stusent_registration_system_flow_chart.png" alt="E-R Digram"> 
+<img src="image/Stusent_registration_system_flow_chart.jpg" alt="E-R Digram"> 
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png" width="100%">
 
