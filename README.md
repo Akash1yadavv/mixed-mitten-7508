@@ -61,7 +61,7 @@ Automated Student Registration System..
 ## Project Logo
 
 <!-- <a href="https://drive.google.com/file/d/1redTBHp9SlBXjTRZ464B-JDW7JYNphBT/view">**Video Drive Link** </a> -->
-<img src="image/LOGO PROJECT.jpg"> 
+<img src="image/StudentRegestrationSystem.jpg"> 
 
 ## Database Schema 
 
